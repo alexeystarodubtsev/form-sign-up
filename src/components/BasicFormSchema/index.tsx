@@ -16,7 +16,7 @@ const BasicFormSchema = Yup.object().shape({
         .required("You must select your country"),
     gender: Yup.string()
         .required("You must select the gender"),
-    terms: Yup.string()
-        .required("You must accept the policies"),
+    terms: Yup.boolean()
+        .isTrue("You must accept the policies"),
 });
 export default BasicFormSchema;

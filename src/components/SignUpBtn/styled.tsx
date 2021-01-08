@@ -12,6 +12,7 @@ export const StyledBtn = styled.button`
     margin-left: auto;
     margin-right: auto;
     display: block;
+    margin-top: 36px;
     &: focus {
       outline: none;
     }

@@ -48,7 +48,7 @@ export const DropDownBox : React.FC<Props> = ({
         {isOpen &&
         <OptionsStyle>
           {options.map(o => (
-            <Option option={o} onClick={() => {
+            <Option key={o} option={o} onClick={() => {
                 setIsOpen(!isOpen);
                 setSelectedValue(o);
                 if (changeValue && changeKey) {

@@ -1,6 +1,6 @@
 // @ts-ignore
-import React from "react";
-import { StyledMainForm, Caption, StyledField, Error, Icon, InputWrapper } from "./styled"
+import React, {useState} from "react";
+import { StyledMainForm, Caption, StyledField, Error, Icon, InputWrapper, RadioButtons, RadioLabel, Link, CustomCheckbox, Checkmark } from "./styled"
 import SignupBtn from "../SignUpBtn";
 import { Formik, Form } from "formik";
 import BasicFormSchema from "../BasicFormSchema";
@@ -19,7 +19,7 @@ const countries = ["Latvia",
     "China"];
 
 export const MainForm = () => {
-
+    const [acceptTerms, setAcceptTerms] = useState(false);
     return <StyledMainForm>
         <Caption>
             Create a new account
@@ -94,7 +94,7 @@ export const MainForm = () => {
                     )}
                     <InputWrapper
                         mb= {  errors.country &&
-                        touched.country ? '0' : '20px'}
+                        touched.country ? '0' : '30px'}
                     >
                         <DropDownBox
                             changeValue = {setFieldValue}
@@ -109,18 +109,20 @@ export const MainForm = () => {
                     </InputWrapper>
                     <InputWrapper
                         mb= {  errors.gender &&
-                        touched.gender ? '0' : '20px'}
+                        touched.gender ? '0' : '30px'}
                     >
+                        <RadioButtons>
                         {['Male', 'Female'].map((gend) => (
                             <React.Fragment key={gend}>
                                 <input type="radio" id={gend} name="gender" value={gend} onChange={() =>
                                 {
-                                    console.log(document.getElementById(""))
+                                    setFieldValue("gender", gend);
                                 }
                                 }/>
-                                <label htmlFor={gend}>{gend}</label>
+                                <RadioLabel htmlFor={gend}>{gend}</RadioLabel>
                             </React.Fragment>
                             ))}
+                        </RadioButtons>
                         {errors.gender &&
                         touched.gender &&
                         <Error>{errors.gender}</Error>
@@ -130,7 +132,20 @@ export const MainForm = () => {
                         mb= {  errors.terms &&
                         touched.terms ? '0' : '20px'}
                     >
-
+                        <CustomCheckbox>Accept {' '}
+                            <Link href="#" onClick={(e) => e.preventDefault()}>
+                                terms
+                            </Link> and {' '}
+                            <Link href="#" onClick={(e) => e.preventDefault()}>
+                                conditions
+                            </Link>
+                        <input type="checkbox" onChange={(e) => {
+                            setFieldValue("terms", !acceptTerms);
+                            setAcceptTerms(!acceptTerms);
+                        }
+                        }/>
+                            <Checkmark/>
+                        </CustomCheckbox>
                         {   errors.terms &&
                         touched.terms &&
                         <Error>{errors.terms}</Error>
