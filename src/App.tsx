@@ -3,12 +3,13 @@ import React from "react";
 import styled from 'styled-components';
 import './global.css'
 import { MainForm } from "./components/MainForm";
-function App() {
-  return <>
+
+export default () => {
+  return (
     <MainWindow>
       <MainForm/>
     </MainWindow>
-    </>;
+  );
 }
 
 const MainWindow = styled.div`
@@ -18,6 +19,3 @@ const MainWindow = styled.div`
    display: flex;
 `
 
-
-
-export default App;

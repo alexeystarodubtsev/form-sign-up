@@ -9,7 +9,7 @@ import {
     InputWrapper,
     Link
 } from "./styled"
-import SignupBtn from "../SignUpBtn";
+import { SignupBtn } from "../SignUpBtn";
 import { Formik, Form } from "formik";
 import BasicFormSchema from "../BasicFormSchema";
 import {LetterIcon, LockIcon} from "../icons";
