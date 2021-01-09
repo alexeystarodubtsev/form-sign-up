@@ -1,5 +1,5 @@
 // @ts-ignore
-import React from "react";
+import React, {useState} from "react";
 import {
     StyledMainForm,
     Caption,
@@ -9,7 +9,8 @@ import {
     InputWrapper,
     Link
 } from "./styled"
-import { SignupBtn } from "../SignUpBtn";
+import { Button } from "../Button";
+import { Spinner } from "../Spinner"
 import { Formik, Form } from "formik";
 import BasicFormSchema from "../BasicFormSchema";
 import {LetterIcon, LockIcon} from "../icons";
@@ -31,7 +32,11 @@ const countries = ["Latvia",
 
 // @ts-ignore
 export const MainForm = () => {
-    return <StyledMainForm>
+
+    const [loading, setLoading] = useState(false);
+
+    return (
+      <StyledMainForm>
         <Caption>
             Create a new account
         </Caption>
@@ -49,6 +54,7 @@ export const MainForm = () => {
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
                 }, 500);
+                setLoading(true);
             }}
             render={({ errors,
                        touched,
@@ -140,13 +146,16 @@ export const MainForm = () => {
                   <Error mb="0">{errors.terms}</Error>
                 }
                 </InputWrapper>
-                <SignupBtn
+                <Button
                   disabled={!isValid || !dirty}
                   mt={errors.terms && touched.terms ? '22px': '36px'}
-                />
+                >
+                  {loading? <Spinner/> : 'Sign up'}
+                </Button>
               </Form>
             )}
         />
-    </StyledMainForm>;
+    </StyledMainForm>
+    );
 }
 

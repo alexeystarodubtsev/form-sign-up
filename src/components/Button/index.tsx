@@ -2,9 +2,12 @@
 import React from "react";
 import styled from 'styled-components';
 
-
-export const SignupBtn = (props : any) => {
-  return <StyledBtn mt={props.mt} {...props}>Sign up</StyledBtn>;
+export const Button = (props : any) => {
+  return (
+      <StyledBtn mt={props.mt} {...props}>
+        {props.children}
+      </StyledBtn>
+  );
 }
 
 const StyledBtn = styled.button<{mt?: string}>`
@@ -15,6 +18,7 @@ const StyledBtn = styled.button<{mt?: string}>`
     width: 100%;
     height: 62px;
     padding: 0;
+    cursor: pointer;
     font: normal normal normal 18px/22px Roboto;
     transition: background 0.3s ease-in;
     margin-left: auto;
