@@ -6,7 +6,7 @@ const BasicFormSchema = Yup.object().shape({
     email: Yup.string()
         .email("Please enter a valid email address")
         .required("Please enter a valid email address"),
-    username: Yup.string()
+    fullName: Yup.string()
         .matches(nameRegExp, "Please enter a valid name")
         .required("Please enter a valid name"),
     password: Yup.string()

@@ -1,5 +1,5 @@
 // @ts-ignore
-import React, {useState} from "react";
+import React from "react";
 import {
     StyledMainForm,
     Caption,
@@ -17,6 +17,7 @@ import {LetterIcon, LockIcon} from "../icons";
 import { DropDownBox } from "../DropDownBox";
 import { CustomCheckBox } from "../CustomCheckBox";
 import { CustomRadioButton } from "../CustomRadioButton";
+import { gql, useMutation } from '@apollo/client';
 
 const countries = ["Latvia",
     "Lebanon",
@@ -30,10 +31,23 @@ const countries = ["Latvia",
     "China"
 ];
 
+const SEND_FORM = gql`
+  mutation SendForm($fullname: String!, $password: String!, $fullName: String!, $country: String) {
+    createUser(input: {
+      fullName: $fullName
+      email: $email,
+      password: $password,
+      country: $country
+    }) {
+      token
+    }
+  }
+`;
+
 // @ts-ignore
 export const MainForm = () => {
 
-    const [loading, setLoading] = useState(false);
+    const [createUser, { data, error, loading }] = useMutation(SEND_FORM);
 
     return (
       <StyledMainForm>
@@ -42,7 +56,7 @@ export const MainForm = () => {
         </Caption>
         <Formik
             initialValues={{
-                username: "",
+                fullName: "",
                 email: "",
                 password: "",
                 country: "",
@@ -51,10 +65,12 @@ export const MainForm = () => {
             }}
             validationSchema={BasicFormSchema}
             onSubmit={values => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                }, 500);
-                setLoading(true);
+                createUser({ variables: {
+                    fullName: values.fullName,
+                    email: values.email,
+                    password: values.password,
+                    country: values.country
+                }});
             }}
             render={({ errors,
                        touched,
@@ -65,7 +81,7 @@ export const MainForm = () => {
             }) => (
               <Form>
                 <InputWrapper
-                    mb={errors.username && touched.username? '0' : '20px'}
+                    mb={errors.fullName && touched.fullName? '0' : '20px'}
                 >
                   <StyledField
                     name="username"
@@ -73,8 +89,8 @@ export const MainForm = () => {
                     type="text"
                   />
                 </InputWrapper>
-                {errors.username && touched.username &&
-                  <Error>{errors.username}</Error>
+                {errors.fullName && touched.fullName &&
+                  <Error>{errors.fullName}</Error>
                 }
                 <InputWrapper mb={errors.email && touched.email? '0' : '20px'}>
                   <Icon>
@@ -146,6 +162,9 @@ export const MainForm = () => {
                   <Error mb="0">{errors.terms}</Error>
                 }
                 </InputWrapper>
+
+                  {error}
+                  {data}
                 <Button
                   disabled={!isValid || !dirty}
                   mt={errors.terms && touched.terms ? '22px': '36px'}
