@@ -68,14 +68,14 @@ export const MainForm = () => {
                 terms: ""
             }}
             validationSchema={BasicFormSchema}
-            onSubmit={values => {
+            onSubmit={async(values) => {
                 signup({ variables: {
                     name: values.fullName,
                     email: values.email,
                     password: values.password,
                     country: values.country,
                     gender : values.gender.toUpperCase()
-                }});
+                } });
             }}
             render={({ errors,
                        touched,

@@ -3,12 +3,11 @@ import React from "react";
 // @ts-ignore
 import ReactDOM from "react-dom";
 import App from "./App";
-import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({
     uri: 'http://homework.nextbil.com/graphql',
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
 });
 
 
