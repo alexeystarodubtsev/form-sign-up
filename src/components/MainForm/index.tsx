@@ -105,7 +105,7 @@ export const MainForm = () => {
                     placeholder="Select country"
                   />
                   {errors.country &&touched.country &&
-                    <Error>{errors.country}</Error>
+                    <Error mb="16px">{errors.country}</Error>
                   }
                 </InputWrapper>
                 <InputWrapper mb={errors.gender && touched.gender ? '0' : '30px'}>
@@ -135,12 +135,12 @@ export const MainForm = () => {
                     }
                   />
                 {errors.terms && touched.terms &&
-                  <Error>{errors.terms}</Error>
+                  <Error mb="0">{errors.terms}</Error>
                 }
                 </InputWrapper>
                 <SignupBtn
                   disabled={!isValid || !dirty}
-                  mt={errors.terms && touched.terms ? '42px': '56px'}
+                  mt={errors.terms && touched.terms ? '22px': '36px'}
                 />
               </Form>
             )}

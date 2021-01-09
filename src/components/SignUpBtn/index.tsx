@@ -14,9 +14,9 @@ const StyledBtn = styled.button<{mt?: string}>`
     color: white;
     width: 100%;
     height: 62px;
+    padding: 0;
     font: normal normal normal 18px/22px Roboto;
-    transition: all 0.3s ease-out 0s;
-    transition-property: background;
+    transition: background 0.3s ease-in;
     margin-left: auto;
     margin-right: auto;
     display: block;

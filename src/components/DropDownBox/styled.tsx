@@ -15,7 +15,7 @@ export const MainBox = styled.div<{color?: string; selected: string}>`
 export const ArrowBox = styled.div<{isOpen?: boolean}>`
     margin-left: auto;
     margin-right: 0;
-    transition: transform 0.4s ease-out;
+    transition: transform 0.3s ease-in;
     transform: ${({ isOpen }) => (isOpen ? `rotate(0)` : `rotate(180deg)`)};
 `
 

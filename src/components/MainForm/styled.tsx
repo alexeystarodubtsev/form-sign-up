@@ -56,10 +56,10 @@ export const Link = styled.a`
     text-decoration: none
 `
 
-export const Error = styled.div<{last?: boolean}>`
+export const Error = styled.div<{mb?: string}>`
     color: #E82828;
     font: normal normal normal 10px/13px Roboto;
     margin-left: 18px;
     margin-top: 2px;
-    margin-bottom: ${({last}) => last ? '0': '6px'};
+    margin-bottom: ${({mb}) => mb ?? '6px'};
 `;
