@@ -84,7 +84,7 @@ export const MainForm = () => {
                     mb={errors.fullName && touched.fullName? '0' : '20px'}
                 >
                   <StyledField
-                    name="username"
+                    name="fullName"
                     placeholder="Enter your name"
                     type="text"
                   />
@@ -162,9 +162,6 @@ export const MainForm = () => {
                   <Error mb="0">{errors.terms}</Error>
                 }
                 </InputWrapper>
-
-                  {error}
-                  {data}
                 <Button
                   disabled={!isValid || !dirty}
                   mt={errors.terms && touched.terms ? '22px': '36px'}
