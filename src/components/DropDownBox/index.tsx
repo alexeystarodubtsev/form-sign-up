@@ -8,6 +8,7 @@ interface Props {
     changeKey?: string;
     placeholder: string;
     options: string [];
+    touchValue?: any;
 }
 
 export const DropDownBox : React.FC<Props> = ({
@@ -15,7 +16,8 @@ export const DropDownBox : React.FC<Props> = ({
       changeValue,
       changeKey,
       placeholder,
-      options
+      options,
+      touchValue
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState("");
@@ -23,6 +25,7 @@ export const DropDownBox : React.FC<Props> = ({
     const hideOut = () => {
         if (isOpen) {
             setIsOpen(false);
+            touchValue(changeKey);
         }
     };
 
@@ -39,7 +42,7 @@ export const DropDownBox : React.FC<Props> = ({
 
     return <DropBoxStyled>
 
-    <MainBox color={color} onClick={() => {setIsOpen(!isOpen);}} selected = {selectedValue}>
+    <MainBox color={color} onClick={() => {setIsOpen(!isOpen)}} selected = {selectedValue}>
         {!!selectedValue ?  selectedValue : placeholder}
         <ArrowBox isOpen={isOpen}>
            <ArrowIcon/>

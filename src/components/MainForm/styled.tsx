@@ -7,7 +7,7 @@ export const StyledMainForm = styled.div`
     height: 522px;
     background-color : white;
     position: relative;
-    top: 184px;
+    top: 84px;
     padding: 30px 30px 54px 30px;
     border-radius: 8px;
 `;
@@ -42,73 +42,6 @@ export const InputWrapper = styled.div<{mb: string; }>`
     margin-bottom: ${({mb}) => mb};
     position: relative;
     width: 100%;
-`;
-
-export const RadioButtons = styled.div`
-    display: flex;
-    width: 100%;
-    align-items: center;
-`
-
-export const RadioLabel = styled.label`
-    margin-left: 10px;
-    margin-right: 24px;
-`;
-
-export const Checkmark = styled.span`
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 14px;
-    width: 14px;
-    border: 1px solid #0094FF;
-    border-radius: 3px;
-    :after {
-        content: "";
-        position: absolute;
-        display: none;
-    }
-
-`
-
-export const CustomCheckbox = styled.label`
-  display: block;
-  width: auto;
-  position: relative;
-  padding-left: 22px;
-  font: normal normal normal 14px/17px Roboto;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-  
-  input:checked ~ span{
-    background-color: white;
-  }
-  
-  input:checked ~ span:after {
-      display: block;
-  }
-  
-  span:after {
-      left: 3px;
-      top: 0px;
-      width: 5px;
-      height: 8px;
-      border: 1px solid #0094FF;
-      border-width: 0 3px 3px 0;
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-    }
 `;
 
 export const Icon = styled.div`

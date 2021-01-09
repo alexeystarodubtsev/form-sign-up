@@ -8,7 +8,7 @@ const BasicFormSchema = Yup.object().shape({
         .required("Please enter a valid email address"),
     username: Yup.string()
         .matches(nameRegExp, "Please enter a valid name")
-        .required("Password must contain at least 6 symbols"),
+        .required("Please enter a valid name"),
     password: Yup.string()
         .min(6, "Password must contain at least 6 symbols")
         .required("Password must contain at least 6 symbols"),
@@ -17,6 +17,8 @@ const BasicFormSchema = Yup.object().shape({
     gender: Yup.string()
         .required("You must select the gender"),
     terms: Yup.boolean()
-        .isTrue("You must accept the policies"),
+        .required("You must accept the policies")
+        .oneOf([true], "You must accept the policies"),
+
 });
 export default BasicFormSchema;

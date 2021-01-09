@@ -2,9 +2,11 @@
 import React from "react";
 import { StyledBtn } from "./styled"
 
-function SignupBtn() {
 
-    return <StyledBtn>Sign up</StyledBtn>;
+
+const SignupBtn = (props : any) => {
+
+    return <StyledBtn mt={props.mt} {...props}>Sign up</StyledBtn>;
 }
 
 export default SignupBtn;
