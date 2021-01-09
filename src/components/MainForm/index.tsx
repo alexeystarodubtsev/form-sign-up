@@ -26,8 +26,10 @@ const countries = ["Latvia",
     "USA",
     "Germany",
     "Poland",
-    "China"];
+    "China"
+];
 
+// @ts-ignore
 export const MainForm = () => {
     return <StyledMainForm>
         <Caption>

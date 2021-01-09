@@ -10,17 +10,16 @@ export const MainBox = styled.div<{color?: string; selected: string}>`
     font: normal normal normal 14px/17px Roboto;
     display: flex;
     cursor: pointer;
-`
+`;
 
 export const ArrowBox = styled.div<{isOpen?: boolean}>`
     margin-left: auto;
     margin-right: 0;
     transition: transform 0.3s ease-in;
     transform: ${({ isOpen }) => (isOpen ? `rotate(0)` : `rotate(180deg)`)};
-`
+`;
 
 export const OptionsStyle = styled.div`
-    
     width: 100%;
     height: 196px;
     box-shadow: 0px 3px 8px #00000026;
@@ -33,7 +32,7 @@ export const OptionsStyle = styled.div`
     ::-webkit-scrollbar {
       width: 0px;
     }
-`
+`;
 
 export const DropBoxPosition = styled.div`
     height: 16px;
@@ -44,8 +43,8 @@ export const DropBoxPosition = styled.div`
     : hover {
       background: #F5F8FA;
     }
-`
+`;
 export const DropBoxStyled = styled.div`
     width: 100%;
     position: relative;
-`
+`;

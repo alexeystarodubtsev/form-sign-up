@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {MainBox, ArrowBox, DropBoxStyled, OptionsStyle} from "./styled";
 import { Option } from "./Option"
 import { ArrowIcon } from "../icons"
+
 interface Props {
     color?: string;
     changeValue?: any;
