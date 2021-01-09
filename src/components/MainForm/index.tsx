@@ -32,22 +32,26 @@ const countries = ["Latvia",
 ];
 
 const SEND_FORM = gql`
-  mutation SendForm($fullname: String!, $password: String!, $fullName: String!, $country: String) {
-    createUser(input: {
-      fullName: $fullName
+  mutation SendForm($name: String!, $password: String!, $email: String!, $country: String!, $gender: String!) {
+    signup(input: {
+      name: $name,
       email: $email,
       password: $password,
-      country: $country
+      country: $country,
+      gender: $gender
     }) {
-      token
+        id,
+        name,
+        email,
+        country,
+        gender
     }
   }
 `;
-
 // @ts-ignore
 export const MainForm = () => {
 
-    const [createUser, { data, error, loading }] = useMutation(SEND_FORM);
+    const [signup, { data, error, loading }] = useMutation(SEND_FORM);
 
     return (
       <StyledMainForm>
@@ -65,11 +69,12 @@ export const MainForm = () => {
             }}
             validationSchema={BasicFormSchema}
             onSubmit={values => {
-                createUser({ variables: {
-                    fullName: values.fullName,
+                signup({ variables: {
+                    name: values.fullName,
                     email: values.email,
                     password: values.password,
-                    country: values.country
+                    country: values.country,
+                    gender : values.gender.toUpperCase()
                 }});
             }}
             render={({ errors,
