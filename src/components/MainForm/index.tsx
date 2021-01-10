@@ -4,7 +4,7 @@ import {
     StyledMainForm,
     Caption,
     StyledField,
-    Error,
+    Error as StyledError,
     Icon,
     InputWrapper,
     Link
@@ -48,10 +48,16 @@ const SEND_FORM = gql`
     }
   }
 `;
+
+
 // @ts-ignore
 export const MainForm = () => {
 
-    const [signup, { data, error, loading }] = useMutation(SEND_FORM);
+    const [signup, {
+        // data: mutationData,
+        // error: murationError,
+        loading
+    }] = useMutation(SEND_FORM, { errorPolicy: 'all' });
 
     return (
       <StyledMainForm>
@@ -77,7 +83,8 @@ export const MainForm = () => {
                     gender : values.gender.toUpperCase()
                 } });
             }}
-            render={({ errors,
+            >
+            {({ errors,
                        touched,
                        setFieldValue,
                        setFieldTouched,
@@ -95,7 +102,7 @@ export const MainForm = () => {
                   />
                 </InputWrapper>
                 {errors.fullName && touched.fullName &&
-                  <Error>{errors.fullName}</Error>
+                  <StyledError>{errors.fullName}</StyledError>
                 }
                 <InputWrapper mb={errors.email && touched.email? '0' : '20px'}>
                   <Icon>
@@ -109,7 +116,7 @@ export const MainForm = () => {
                   />
                 </InputWrapper>
                 {errors.email && touched.email &&
-                  <Error>{errors.email}</Error>
+                  <StyledError>{errors.email}</StyledError>
                 }
                 <InputWrapper mb={errors.password &&  touched.password? '0' : '20px'}>
                 <Icon>
@@ -123,7 +130,7 @@ export const MainForm = () => {
                 />
                 </InputWrapper>
                 {errors.password && touched.password &&
-                  <Error>{errors.password}</Error>
+                  <StyledError>{errors.password}</StyledError>
                 }
                 <InputWrapper mb= {  errors.country && touched.country ? '0' : '30px'}>
                   <DropDownBox
@@ -134,13 +141,13 @@ export const MainForm = () => {
                     placeholder="Select country"
                   />
                   {errors.country &&touched.country &&
-                    <Error mb="16px">{errors.country}</Error>
+                    <StyledError mb="16px">{errors.country}</StyledError>
                   }
                 </InputWrapper>
                 <InputWrapper mb={errors.gender && touched.gender ? '0' : '30px'}>
                   <CustomRadioButton options={['Male', 'Female']} setFieldValue={setFieldValue} name="gender"/>
                   {errors.gender && touched.gender &&
-                    <Error>{errors.gender}</Error>
+                    <StyledError>{errors.gender}</StyledError>
                   }
                 </InputWrapper>
                 <InputWrapper mb="0">
@@ -164,7 +171,7 @@ export const MainForm = () => {
                     }
                   />
                 {errors.terms && touched.terms &&
-                  <Error mb="0">{errors.terms}</Error>
+                  <StyledError mb="0">{errors.terms}</StyledError>
                 }
                 </InputWrapper>
                 <Button
@@ -175,7 +182,7 @@ export const MainForm = () => {
                 </Button>
               </Form>
             )}
-        />
+        </Formik>
     </StyledMainForm>
     );
 }
