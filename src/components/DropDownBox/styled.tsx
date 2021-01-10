@@ -21,7 +21,7 @@ export const ArrowBox = styled.div<{isOpen?: boolean}>`
 
 export const OptionsStyle = styled.div`
     width: 100%;
-    height: 196px;
+    max-height: 196px;
     box-shadow: 0px 3px 8px #00000026;
     border-radius: 8px;
     position: absolute;

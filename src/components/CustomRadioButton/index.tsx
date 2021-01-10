@@ -4,7 +4,7 @@ import styled from "styled-components";
 interface Props {
     name: string;
     options: string[];
-    setFieldValue: any;
+    setFieldValue?: any;
 }
 
 export const CustomRadioButton: React.FC<Props> = ({name, options, setFieldValue}) => {
@@ -17,7 +17,10 @@ export const CustomRadioButton: React.FC<Props> = ({name, options, setFieldValue
                           type="radio"
                           name={name}
                           value={gend}
-                          onChange={() => setFieldValue(name, gend)}/>
+                          onChange={() => {
+                              if (setFieldValue)
+                                  setFieldValue(name, gend)
+                          }}/>
                         <RadioButtonSpan/>
                     </RadioButton>
                 </React.Fragment>
