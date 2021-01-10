@@ -158,6 +158,7 @@ export const MainForm = () => {
                 <Button
                   disabled={!isValid || !dirty}
                   mt={errors.terms && touched.terms ? '22px': '36px'}
+                  type="submit"
                 >
                   {loading? <Spinner/> : 'Sign up'}
                 </Button>

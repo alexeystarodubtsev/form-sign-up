@@ -24,7 +24,7 @@ export const InputField: React.FC<Props> = ({
           <InputWrapper mb={showError? '0': '20px'}>
             {Icon &&
               <StyledIcon>
-                  <Icon width/>
+                  <Icon/>
               </StyledIcon>
             }
             <StyledField
