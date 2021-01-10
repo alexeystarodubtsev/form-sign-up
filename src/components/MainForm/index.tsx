@@ -3,14 +3,12 @@ import React from "react";
 import {
     StyledMainForm,
     Caption,
-    StyledField,
-    Error as StyledError,
-    Icon,
-    InputWrapper,
     Link
 } from "./styled"
+import {InputWrapper, Error as StyledError} from "../InputField/styled";
 import { Button } from "../Button";
-import { Spinner } from "../Spinner"
+import { Spinner } from "../Spinner";
+import { InputField } from "../InputField"
 import { Formik, Form } from "formik";
 import BasicFormSchema from "../BasicFormSchema";
 import {LetterIcon, LockIcon} from "../icons";
@@ -48,8 +46,6 @@ const SEND_FORM = gql`
     }
   }
 `;
-
-
 // @ts-ignore
 export const MainForm = () => {
 
@@ -92,46 +88,27 @@ export const MainForm = () => {
                        dirty
             }) => (
               <Form>
-                <InputWrapper
-                    mb={errors.fullName && touched.fullName? '0' : '20px'}
-                >
-                  <StyledField
-                    name="fullName"
-                    placeholder="Enter your name"
-                    type="text"
-                  />
-                </InputWrapper>
-                {errors.fullName && touched.fullName &&
-                  <StyledError>{errors.fullName}</StyledError>
-                }
-                <InputWrapper mb={errors.email && touched.email? '0' : '20px'}>
-                  <Icon>
-                    <LetterIcon/>
-                  </Icon>
-                  <StyledField
-                    name="email"
-                    placeholder="Email"
-                    type="Email"
-                    pl="52px"
-                  />
-                </InputWrapper>
-                {errors.email && touched.email &&
-                  <StyledError>{errors.email}</StyledError>
-                }
-                <InputWrapper mb={errors.password &&  touched.password? '0' : '20px'}>
-                <Icon>
-                  <LockIcon/>
-                </Icon>
-                <StyledField
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    pl="52px"
+                <InputField
+                  name="fullName"
+                  placeholder="Enter your name"
+                  showError={!!errors.fullName && !!touched.fullName}
+                  errorText={errors.fullName}
                 />
-                </InputWrapper>
-                {errors.password && touched.password &&
-                  <StyledError>{errors.password}</StyledError>
-                }
+                <InputField
+                  name="email"
+                  placeholder="Email"
+                  showError={!!errors.email && !!touched.email}
+                  Icon={LetterIcon}
+                  errorText={errors.email}
+                />
+                <InputField
+                  name="password"
+                  placeholder="Password"
+                  showError={!!errors.password && !!touched.password}
+                  Icon={LockIcon}
+                  errorText={errors.password}
+                  type="password"
+                />
                 <InputWrapper mb= {  errors.country && touched.country ? '0' : '30px'}>
                   <DropDownBox
                     changeValue = {setFieldValue}
@@ -145,7 +122,11 @@ export const MainForm = () => {
                   }
                 </InputWrapper>
                 <InputWrapper mb={errors.gender && touched.gender ? '0' : '30px'}>
-                  <CustomRadioButton options={['Male', 'Female']} setFieldValue={setFieldValue} name="gender"/>
+                  <CustomRadioButton
+                      options={['Male', 'Female']}
+                      setFieldValue={setFieldValue}
+                      name="gender"
+                  />
                   {errors.gender && touched.gender &&
                     <StyledError>{errors.gender}</StyledError>
                   }
@@ -154,7 +135,7 @@ export const MainForm = () => {
                   <CustomCheckBox
                     id="acceptRules"
                     onChange={(e : any) => {
-                      const el = document.getElementById("acceptRules") as HTMLInputElement;
+                      const el = document.querySelector("#acceptRules") as HTMLInputElement;
                       setFieldTouched("terms");
                       setFieldValue("terms", el.checked);
                     }}

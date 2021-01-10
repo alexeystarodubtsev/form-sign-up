@@ -6,7 +6,7 @@ interface Props {
     height?: number;
 }
 export const LockIcon: React.FC<Props> = React.memo(props => (
-    <svg fill='none' viewBox="0 0 16 20" {...props}>
+    <svg fill='none' viewBox="0 0 16 20" {...props} width={props.width} height={props.height}>
         <path className="a"
               d="M17,8H16V6.11a4,4,0,0,0-8,0V8H7a3,3,0,0,0-3,3v8a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V11A3,3,0,0,0,17,8ZM10,6.11a2,2,0,1,1,4,0V8H10ZM18,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z"
               transform="translate(-4 -2.11)"
