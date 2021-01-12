@@ -15,7 +15,8 @@ import {LetterIcon, LockIcon} from "../icons";
 import { DropDownBox } from "../DropDownBox";
 import { CustomCheckBox } from "../CustomCheckBox";
 import { CustomRadioButton } from "../CustomRadioButton";
-import { gql, useMutation } from '@apollo/client';
+// TODO: unhide  if CORS not blocking
+// import {gql, useMutation, useQuery} from '@apollo/client';
 
 const countries = ["Latvia",
     "Lebanon",
@@ -28,33 +29,35 @@ const countries = ["Latvia",
     "Poland",
     "China"
 ];
+// TODO: unhide  if CORS not blocking
+// const SEND_FORM = gql`
+//   mutation SendForm($name: String!, $password: String!, $email: String!, $country: String!, $gender: String!) {
+//     signup(input: {
+//       name: $name,
+//       email: $email,
+//       password: $password,
+//       country: $country,
+//       gender: $gender
+//     }) {
+//         id,
+//         name,
+//         email,
+//         country,
+//         gender
+//     }
+//   }
+// `;
+//
 
-const SEND_FORM = gql`
-  mutation SendForm($name: String!, $password: String!, $email: String!, $country: String!, $gender: String!) {
-    signup(input: {
-      name: $name,
-      email: $email,
-      password: $password,
-      country: $country,
-      gender: $gender
-    }) {
-        id,
-        name,
-        email,
-        country,
-        gender
-    }
-  }
-`;
 // @ts-ignore
 export const MainForm = () => {
-
-    const [signup, {
-        // data: mutationData,
-        // error: murationError,
-        loading
-    }] = useMutation(SEND_FORM, { errorPolicy: 'all' });
-
+     // TODO: unhide  if CORS not blocking
+    // const [signup, {
+    //     // data: mutationData,
+    //     // error: murationError,
+    //     loading
+    // }] = useMutation(SEND_FORM, { errorPolicy: 'all' });
+    const [loading, setLoading] = React.useState(false);
     return (
       <StyledMainForm>
         <Caption>
@@ -71,13 +74,16 @@ export const MainForm = () => {
             }}
             validationSchema={BasicFormSchema}
             onSubmit={async(values) => {
-                signup({ variables: {
-                    name: values.fullName,
-                    email: values.email,
-                    password: values.password,
-                    country: values.country,
-                    gender : values.gender.toUpperCase()
-                } });
+                // TODO: unhide  if CORS not blocking
+                // signup({ variables: {
+                //     name: values.fullName,
+                //     email: values.email,
+                //     password: values.password,
+                //     country: values.country,
+                //     gender : values.gender.toUpperCase()
+                // } });
+                setLoading(true);
+                setTimeout(() => {setLoading(false)}, 10000)
             }}
             >
             {({ errors,
